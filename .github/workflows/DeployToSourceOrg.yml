@@ -3,7 +3,7 @@ name: Deploy to Source Org
 on:
   push:
     branches:
-      - AcountChanges
+      - master
 
 jobs:
   deploy:
