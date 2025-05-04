@@ -20,8 +20,6 @@ jobs:
     - name: Authenticate using username/password
       run: |
         sf org login auth \
-          --username ${{ secrets.SF_USERNAME }} \
-          --password ${{ secrets.SF_PASSWORD }} \
           --instance-url ${{ secrets.SF_INSTANCE_URL }} \
           --alias sourceOrg \
           --set-default
