@@ -1,0 +1,34 @@
+name: Deploy to Source Org
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v3
+
+    - name: Install Salesforce CLI
+      run: |
+        npm install --global @salesforce/cli
+
+    - name: Authenticate using username/password
+      run: |
+        sf org login \
+          --instance-url ${{ secrets.SF_INSTANCE_URL }} \
+          --alias sourceOrg \
+          --set-default
+
+    - name: Deploy metadata to source org
+      run: |
+        sf project deploy start \
+          --source-dir force-app \
+          --target-org sourceOrg \
+          --test-level RunLocalTests \
+          --wait 10 \
+          --verbose
