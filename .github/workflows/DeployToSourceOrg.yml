@@ -19,7 +19,7 @@ jobs:
 
     - name: Authenticate using username/password
       run: |
-        sf org login --instance-url ${{ secrets.SF_INSTANCE_URL }} --alias sourceOrg --set-default
+        sf org login web --instance-url ${{ secrets.SF_INSTANCE_URL }} --alias sourceOrg --set-default
 
     - name: Deploy metadata to source org
       run: |
